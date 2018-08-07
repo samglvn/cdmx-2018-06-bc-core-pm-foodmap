@@ -1,58 +1,58 @@
-/*var map;
- var infowindow;
+let map;
 
- function initMap()
- {
- // Creamos un mapa con las coordenadas actuales
-   navigator.geolocation.getCurrentPosition(function(pos) {
+navigator.geolocation.getCurrentPosition(function(position) {
+  let pos = {
+    lat: position.coords.latitude,
+    lng: position.coords.longitude
+  };
+  let positionUser =  Object.values(pos);
+  let latitude = positionUser[0];
+ let longitude = positionUser[1];
+iniciarMapa(latitude,longitude)
 
-   lat = pos.coords.latitude;
-   lon = pos.coords.longitude;
+})
 
-   var myLatlng = new google.maps.LatLng(lat, lon);
+function iniciarMapa(lati,longi) {
+console.log(longi)
+  let center = new google.maps.LatLng(lati,longi);
+  map = new google.maps.Map(document.getElementById('googleMap'), {
+    center: center,
+    zoom: 14
+  });
 
-   var mapOptions = {
-     center: myLatlng,
-     zoom: 14,
-     mapTypeId: google.maps.MapTypeId.SATELLITE
-   };
 
-   map = new google.maps.Map(document.getElementById("mapa"),  mapOptions);
 
-   // Creamos el infowindow
-   infowindow = new google.maps.InfoWindow();
+let request = {
+  location : center,
+  radius: 500,
+  types: ['restautant']
+}
 
-   // Especificamos la localización, el radio y el tipo de lugares que queremos obtener
-   var request = {
-     location: myLatlng,
-     radius: 5000,
-     types: ['cafe']
-   };
+let service = new google.maps.places.PlacesService(map);
 
-   // Creamos el servicio PlaceService y enviamos la petición.
-   var service = new google.maps.places.PlacesService(map);
+service.nearbySearch(request, callback);
 
-   service.nearbySearch(request, function(results, status) {
-     if (status === google.maps.places.PlacesServiceStatus.OK) {
-       for (var i = 0; i < results.length; i++) {
-         crearMarcador(results[i]);
-       }
-     }
-   });
+}
+
+const callback = (results, status) => {
+  if(status === google.maps.places.PlacesServiceStatus.OK){
+    for(i=0; i<results.length; i++){
+      createMarker(results[i]);
+      console.log(results[i]);
+    }
+  }
+}
+
+const createMarker = (place) => {
+  let placeLoc = place.geometry.location;
+  let market = new google.maps.Marker({
+    map: map,
+    position: place.geometry.location,
+    title: place.name
+   
  });
 }
 
- function crearMarcador(place)
- {
-   // Creamos un marcador
-   var marker = new google.maps.Marker({
-     map: map,
-     position: place.geometry.location
-   });
-
- // Asignamos el evento click del marcador
-   google.maps.event.addListener(marker, 'click', function() {
-     infowindow.setContent(place.name);
-     infowindow.open(map, this);
-   });
-*/
+const printRestaurant =(result)=>{
+  let photos= result.photos;
+}

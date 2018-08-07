@@ -1,5 +1,5 @@
 const tiempoMuerto = () =>{
-    window.setTimeout("redirigir()",5000)
+    window.setTimeout("redirigir()",2000)
   }
   
   window.onload = tiempoMuerto;

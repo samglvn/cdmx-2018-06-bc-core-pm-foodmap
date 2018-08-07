@@ -1,0 +1,51 @@
+header{
+    background:rgb(0, 0, 0);
+    color: white;
+}
+.title {
+    font-size: 80px;
+    font-family: 'Acme';
+  }
+
+  #googleMap {
+    height: 150px;
+  }
+  
+  
+  .images-list {
+     margin-top: 2vh;
+  }
+  
+  .images-list img {
+    height: 100%;
+    position: relative;
+  }
+  
+  .images-list div {
+    height: 20vh;
+  }
+  
+  .images-list div p {
+    bottom: 5vh;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    left: 5vh;
+    position: absolute;
+    right: 5vh;
+    top: 5vh;
+    width: auto;
+  }
+  
+  .img-opacity {
+    opacity: 0.4;
+    z-index: 0;
+  }
+  
+  #myModal {
+    color: var(--black);
+  }
+  
+  .modal-photo {
+    width: auto;
+  }
